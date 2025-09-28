@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PhishGuard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="glitch.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="glitch" data-text="PHISHGUARD">PHISHGUARD</h1>
+    <p>Scan any URL below to check if it's phishing 👇</p>
+    <div class="scanner-box">
+      <input type="text" id="urlInput" placeholder="https://example.com" />
+      <button id="scanBtn">SCAN</button>
+    </div>
+    <div id="result"></div>
+
+    <div class="links">
+      <a href="http://127.0.0.1:5500/frontend/history.html" target="_blank">📜 View History</a>
+      <a href="http://127.0.0.1:5500/frontend/analytics.html" target="_blank">📊 Analytics</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics // PhishGuard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 class="glitch" data-text="PHISHGUARD">PHISHGUARD</h1>
+    <nav>
+      <a href="index.html">Scan</a>
+      <a href="history.html">History</a>
+      <a href="wallet.html">Wallet</a>
+      <a href="analytics.html" class="active">Analytics</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>// Analytics Dashboard</h2>
+    <div id="stats"></div>
+  </main>
+
+  <script>
+    fetch("http://127.0.0.1:8000/history")
+      .then(res => res.json())
+      .then(data => {
+        const total = data.length;
+        const phishing = data.filter(x => x.result === "Phishing").length;
+        const safe = total - phishing;
+        const percent = ((phishing / total) * 100).toFixed(2);
+        document.getElementById("stats").innerHTML = `
+          <p>Total Scans: ${total}</p>
+          <p>Phishing Detected: ${phishing} (${percent}%)</p>
+          <p>Safe Sites: ${safe}</p>
+        `;
+      });
+  </script>
+</body>
+</html>

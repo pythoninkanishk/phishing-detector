@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History // PhishGuard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 class="glitch" data-text="PHISHGUARD">PHISHGUARD</h1>
+    <nav>
+      <a href="index.html">Scan</a>
+      <a href="history.html" class="active">History</a>
+      <a href="wallet.html">Wallet</a>
+      <a href="analytics.html">Analytics</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>// Scan History</h2>
+    <table id="historyTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>URL</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script>
+    fetch("http://127.0.0.1:8000/history")
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector("#historyTable tbody");
+        tbody.innerHTML = data.map((row, i) => `
+          <tr>
+            <td>${i+1}</td>
+            <td>${row.url}</td>
+            <td class="${row.result === 'Phishing' ? 'danger' : 'safe'}">${row.result}</td>
+          </tr>
+        `).join("");
+      });
+  </script>
+</body>
+</html>
